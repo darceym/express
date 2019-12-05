@@ -15,7 +15,7 @@ router.post("/notes", function(req, res) {
     fs.writeFile('./db/db.json', JSON.stringify(notes),(err)=>{
         if(err) throw err
         res.sendStatus(200)
-    })
+    });
 });
 router.delete("/notes/:id",(req, res)=>{
     const id = req.params.id
