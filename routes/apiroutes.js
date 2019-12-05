@@ -10,7 +10,10 @@ router.get('/notes', (req, res) => {
 router.post("/notes", function(req, res) {
     const newNote = req.body;
     console.log(newNote);
-    newNote.id = parseInt(notes[notes.length-1].id)+1
+    if(!notes.length){
+        newNote.id = 0
+    }else{
+    newNote.id = parseInt(notes[notes.length-1].id)+1}
     notes.push(newNote)
     fs.writeFile('./db/db.json', JSON.stringify(notes),(err)=>{
         if(err) throw err
